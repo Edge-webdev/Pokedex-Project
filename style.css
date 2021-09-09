@@ -11,3 +11,41 @@ body {
   height: 100vh;
   font-family: 'Roboto', sans-serif;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+  border: 1px black solid;
+  width: 40%;
+}
+
+.pokemon-header {
+  width: 40%;
+  height: auto;
+  margin-right: 10%;
+}
+
+.pokemon-name {
+  width: 100%;
+  text-align: center;
+}
+
+.pokemon-sprite {
+  width: 100%;
+  height: auto;
+}
+
+.pokemon-type {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  height: 10%;
+}
+
+.subtitle {
+  margin-bottom: 0;
+}
+
+p {
+  margin-left: 20px;
+}
