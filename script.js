@@ -7,26 +7,29 @@ const pokemonType1 = document.querySelector('.type1');
 const pokemonType2 = document.querySelector('.type2');
 const pokemonEggGroup = document.querySelector('.egg-group');
 
-var id = 1;
+var id = 204;
 
 async function fetchAPIData() {
+  // Fetches two sets of data
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
   const res2 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
   const data = await res.json();
   const data2 = await res2.json();
 
+  // Object to store shortened forms of data
   var pokemon = {
     poke_name: data.name,
     poke_type1: data.types[0].type.name,
-    poke_type2: data.types[1].type.name,
+    poke_type2: data.types[1] ? data.types[1].type.name : undefined,
     poke_ability: data.abilities[0].ability.name,
     poke_SA: data.abilities[2]
       ? data.abilities[2].ability.name
       : data.abilities[1].ability.name,
     poke_eggGroup1: data2.egg_groups[0].name,
-    poke_eggGroup2: data2.egg_groups[1].name,
+    poke_eggGroup2: data2.egg_groups[1] ? data2.egg_groups[1].name : undefined,
   };
 
+  // Variables to store capitalized data or converts them to undefined
   var name = pokemon.poke_name[0].toUpperCase() + pokemon.poke_name.slice(1);
   var type1 = pokemon.poke_type1[0].toUpperCase() + pokemon.poke_type1.slice(1);
   var type2 = pokemon.poke_type2
@@ -43,6 +46,7 @@ async function fetchAPIData() {
     ? pokemon.poke_eggGroup2[0].toUpperCase() + pokemon.poke_eggGroup2.slice(1)
     : undefined;
 
+  // Changes the web page based on ID
   pokemonName.innerHTML = name;
   pokemonSprite.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
   pokemonType1.innerHTML = type1;
