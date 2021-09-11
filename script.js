@@ -19,6 +19,7 @@ async function fetchAPIData() {
   // Object to store shortened forms of data
   var pokemon = {
     poke_name: data.name,
+    poke_img: data.sprites.front_default,
     poke_type1: data.types[0].type.name,
     poke_type2: data.types[1] ? data.types[1].type.name : undefined,
     poke_ability: data.abilities[0].ability.name,
@@ -48,7 +49,7 @@ async function fetchAPIData() {
 
   // Changes the web page based on ID
   pokemonName.innerHTML = name;
-  pokemonSprite.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+  pokemonSprite.src = pokemon.poke_img;
   pokemonType1.innerHTML = type1;
   pokemonType2.innerHTML = type2 ? type2 : 'None';
   pokemonAbility.innerHTML = ability;
