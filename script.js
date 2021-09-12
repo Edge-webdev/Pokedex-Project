@@ -34,7 +34,6 @@ async function fetchAPIData() {
     poke_eggGroup2: data2.egg_groups[1] ? data2.egg_groups[1].name : undefined,
   };
 
-  // Variables to store capitalized data or converts them to undefined
   var name = capitalizeString(pokemon.poke_name);
   var type1 = capitalizeString(pokemon.poke_type1);
   var type2 = capitalizeString(pokemon.poke_type2);
@@ -58,6 +57,7 @@ async function fetchAPIData() {
     : 'Egg Group: None';
 }
 
+// Function to capitalize strings
 function capitalizeString(str) {
   return str ? str[0].toUpperCase() + str.slice(1) : undefined;
 }
