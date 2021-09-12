@@ -4,33 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Pokedex App</title>
   </head>
   <body>
     <div class="container">
-      <header class="pokemon-header">
-        <h2 class="pokemon-name"></h2>
-        <img src="" class="pokemon-sprite" alt="Pokemon image" />
-      </header>
-      <section class="pokemon-info">
-        <h3 class="subtitle">Pokemon Type</h3>
-        <div class="pokemon-type">
-          <p class="type1"></p>
-          <p class="type2"></p>
-        </div>
-        <h3 class="subtitle">Abilities</h3>
-        <div class="pokemon-ability">
-          <p class="ability"></p>
-          <h4 class="subtitle">Secret Ability</h4>
-          <p class="secret-ability"></p>
-        </div>
-        <h3 class="subtitle">Miscellanous information</h3>
-        <div class="extra-info">
-          <p class="pokemon-id"></p>
-          <p class="egg-group"></p>
-        </div>
-      </section>
+      <div class="button-container">
+        <button class="nextPokemon">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+        <button class="previousPokemon">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+      </div>
+      <div class="pokemon-container">
+        <header class="pokemon-header">
+          <h2 class="pokemon-name"></h2>
+          <img src="" class="pokemon-sprite" alt="Pokemon image" />
+        </header>
+        <section class="pokemon-info">
+          <h3 class="subtitle">Pokemon Type</h3>
+          <div class="pokemon-type">
+            <p class="type1"></p>
+            <p class="type2"></p>
+          </div>
+          <h3 class="subtitle">Abilities</h3>
+          <div class="pokemon-ability">
+            <p class="ability"></p>
+            <h4 class="subtitle">Secret Ability</h4>
+            <p class="secret-ability"></p>
+          </div>
+          <h3 class="subtitle">Miscellanous information</h3>
+          <div class="extra-info">
+            <p class="pokemon-id"></p>
+            <p class="egg-group"></p>
+          </div>
+        </section>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
