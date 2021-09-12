@@ -7,7 +7,9 @@ const pokemonType1 = document.querySelector('.type1');
 const pokemonType2 = document.querySelector('.type2');
 const pokemonEggGroup = document.querySelector('.egg-group');
 
-var id = 204;
+var id = 898;
+
+fetchAPIData();
 
 async function fetchAPIData() {
   // Fetches two sets of data
@@ -18,15 +20,17 @@ async function fetchAPIData() {
 
   // Object to store shortened forms of data
   var pokemon = {
-    poke_name: data.name,
+    poke_name: data.species.name,
     poke_img: data.sprites.front_default,
     poke_type1: data.types[0].type.name,
     poke_type2: data.types[1] ? data.types[1].type.name : undefined,
     poke_ability: data.abilities[0].ability.name,
     poke_SA: data.abilities[2]
       ? data.abilities[2].ability.name
-      : data.abilities[1].ability.name,
-    poke_eggGroup1: data2.egg_groups[0].name,
+      : data.abilities[1]
+      ? data.abilities[1].ability.name
+      : undefined,
+    poke_eggGroup1: data2.egg_groups[0] ? data2.egg_groups[0].name : undefined,
     poke_eggGroup2: data2.egg_groups[1] ? data2.egg_groups[1].name : undefined,
   };
 
@@ -41,8 +45,9 @@ async function fetchAPIData() {
   var secretAbility = pokemon.poke_SA
     ? pokemon.poke_SA[0].toUpperCase() + pokemon.poke_SA.slice(1)
     : undefined;
-  var eggGroup1 =
-    pokemon.poke_eggGroup1[0].toUpperCase() + pokemon.poke_eggGroup1.slice(1);
+  var eggGroup1 = eggGroup1
+    ? pokemon.poke_eggGroup1[0].toUpperCase() + pokemon.poke_eggGroup1.slice(1)
+    : undefined;
   var eggGroup2 = pokemon.poke_eggGroup2
     ? pokemon.poke_eggGroup2[0].toUpperCase() + pokemon.poke_eggGroup2.slice(1)
     : undefined;
@@ -53,11 +58,27 @@ async function fetchAPIData() {
   pokemonType1.innerHTML = type1;
   pokemonType2.innerHTML = type2 ? type2 : 'None';
   pokemonAbility.innerHTML = ability;
-  pokemonSA.innerHTML = secretAbility;
+  pokemonSA.innerHTML = secretAbility ? secretAbility : 'None';
   pokemonID.innerHTML = `ID: ${id}`;
   pokemonEggGroup.innerHTML = eggGroup2
     ? `Egg Groups: ${eggGroup1}, ${eggGroup2}`
-    : `Egg Group: ${eggGroup1}`;
+    : eggGroup1
+    ? `Egg Group: ${eggGroup1}`
+    : 'Egg Group: None';
 }
 
-fetchAPIData();
+function nextPokemon() {
+  id++;
+  if (id > 898) {
+    id = 1;
+  }
+  fetchAPIData();
+}
+
+function previousPokemon() {
+  id--;
+  if (id <= 0) {
+    id = 898;
+  }
+  fetchAPIData();
+}
