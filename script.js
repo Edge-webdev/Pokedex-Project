@@ -35,22 +35,13 @@ async function fetchAPIData() {
   };
 
   // Variables to store capitalized data or converts them to undefined
-  var name = pokemon.poke_name[0].toUpperCase() + pokemon.poke_name.slice(1);
-  var type1 = pokemon.poke_type1[0].toUpperCase() + pokemon.poke_type1.slice(1);
-  var type2 = pokemon.poke_type2
-    ? pokemon.poke_type2[0].toUpperCase() + pokemon.poke_type2.slice(1)
-    : undefined;
-  var ability =
-    pokemon.poke_ability[0].toUpperCase() + pokemon.poke_ability.slice(1);
-  var secretAbility = pokemon.poke_SA
-    ? pokemon.poke_SA[0].toUpperCase() + pokemon.poke_SA.slice(1)
-    : undefined;
-  var eggGroup1 = pokemon.poke_eggGroup1
-    ? pokemon.poke_eggGroup1[0].toUpperCase() + pokemon.poke_eggGroup1.slice(1)
-    : undefined;
-  var eggGroup2 = pokemon.poke_eggGroup2
-    ? pokemon.poke_eggGroup2[0].toUpperCase() + pokemon.poke_eggGroup2.slice(1)
-    : undefined;
+  var name = capitalizeString(pokemon.poke_name);
+  var type1 = capitalizeString(pokemon.poke_type1);
+  var type2 = capitalizeString(pokemon.poke_type2);
+  var ability = capitalizeString(pokemon.poke_ability);
+  var secretAbility = capitalizeString(pokemon.poke_SA);
+  var eggGroup1 = capitalizeString(pokemon.poke_eggGroup1);
+  var eggGroup2 = capitalizeString(pokemon.poke_eggGroup2);
 
   // Changes the web page based on ID
   pokemonName.innerHTML = name;
@@ -65,6 +56,10 @@ async function fetchAPIData() {
     : eggGroup1
     ? `Egg Group: ${eggGroup1}`
     : 'Egg Group: None';
+}
+
+function capitalizeString(str) {
+  return str ? str[0].toUpperCase() + str.slice(1) : undefined;
 }
 
 function nextPokemon() {
