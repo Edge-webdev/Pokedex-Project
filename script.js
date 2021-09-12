@@ -7,7 +7,7 @@ const pokemonType1 = document.querySelector('.type1');
 const pokemonType2 = document.querySelector('.type2');
 const pokemonEggGroup = document.querySelector('.egg-group');
 
-var id = 898;
+var id = 1;
 
 fetchAPIData();
 
@@ -45,7 +45,7 @@ async function fetchAPIData() {
   var secretAbility = pokemon.poke_SA
     ? pokemon.poke_SA[0].toUpperCase() + pokemon.poke_SA.slice(1)
     : undefined;
-  var eggGroup1 = eggGroup1
+  var eggGroup1 = pokemon.poke_eggGroup1
     ? pokemon.poke_eggGroup1[0].toUpperCase() + pokemon.poke_eggGroup1.slice(1)
     : undefined;
   var eggGroup2 = pokemon.poke_eggGroup2
