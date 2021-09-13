@@ -1,3 +1,4 @@
+// Grabs DOM elements
 const pokemonName = document.querySelector('.pokemon-name');
 const pokemonSprite = document.querySelector('.pokemon-sprite');
 const pokemonID = document.querySelector('.pokemon-id');
@@ -34,6 +35,7 @@ async function fetchAPIData() {
     poke_eggGroup2: data2.egg_groups[1] ? data2.egg_groups[1].name : undefined,
   };
 
+  // Formats all of the string variables
   var name = formatString(pokemon.poke_name);
   var type1 = formatString(pokemon.poke_type1);
   var type2 = formatString(pokemon.poke_type2);
@@ -57,9 +59,11 @@ async function fetchAPIData() {
     : 'Egg Group: None';
 }
 
-// Function to capitalize strings
+// Function to format strings
 function formatString(str) {
+  // Checks if input is undefined
   if (str) {
+    // Removes hyphens and capitalizes the words in the string
     var newStr = str.split('-');
     for (var i = 0; i < newStr.length; i++) {
       newStr[i] = newStr[i][0].toUpperCase() + newStr[i].slice(1);
@@ -72,16 +76,22 @@ function formatString(str) {
 
 function nextPokemon() {
   id++;
+  // Loops around if it tries to go beyond the highest ID
   if (id > 898) {
     id = 1;
   }
+
+  // Updates page
   fetchAPIData();
 }
 
 function previousPokemon() {
   id--;
+  // Loops around if goes to the negatives
   if (id <= 0) {
     id = 898;
   }
+
+  // Updates page
   fetchAPIData();
 }
