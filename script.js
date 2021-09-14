@@ -1,12 +1,5 @@
 // Grabs DOM elements
-const pokemonName = document.querySelector('.pokemon-name');
-const pokemonSprite = document.querySelector('.pokemon-sprite');
-const pokemonID = document.querySelector('.pokemon-id');
-const pokemonAbility = document.querySelector('.ability');
-const pokemonSA = document.querySelector('.secret-ability');
-const pokemonType1 = document.querySelector('.type1');
-const pokemonType2 = document.querySelector('.type2');
-const pokemonEggGroup = document.querySelector('.egg-group');
+const pokemonContainer = document.querySelector('.container');
 
 var id = 1;
 
@@ -45,18 +38,46 @@ async function fetchAPIData() {
   var eggGroup2 = formatString(pokemon.poke_eggGroup2);
 
   // Changes the web page based on ID
-  pokemonName.innerHTML = name;
-  pokemonSprite.src = pokemon.poke_img;
-  pokemonType1.innerHTML = type1;
-  pokemonType2.innerHTML = type2 ? type2 : 'None';
-  pokemonAbility.innerHTML = ability;
-  pokemonSA.innerHTML = secretAbility ? secretAbility : 'None';
-  pokemonID.innerHTML = `ID: ${id}`;
-  pokemonEggGroup.innerHTML = eggGroup2
-    ? `Egg Groups: ${eggGroup1}, ${eggGroup2}`
-    : eggGroup1
-    ? `Egg Group: ${eggGroup1}`
-    : 'Egg Group: None';
+  pokemonContainer.innerHTML = `<div class="button-container">
+  <button class="nextPokemon" onclick="nextPokemon()">
+    <i class="fas fa-arrow-right"></i>
+  </button>
+  <button class="previousPokemon" onclick="previousPokemon()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+</div>
+<div class="pokemon-container">
+  <header class="pokemon-header">
+    <h2 class="pokemon-name">${name}</h2>
+    <img src="${
+      pokemon.poke_img
+    }" class="pokemon-sprite" alt="Pokemon sprite" />
+  </header>
+  <section class="pokemon-info">
+    <h3 class="subtitle">Pokemon Type</h3>
+    <div class="pokemon-type">
+      <p class="type1">${type1}</p>
+      <p class="type2">${type2 ? type2 : 'None'}</p>
+    </div>
+    <h3 class="subtitle">Abilities</h3>
+    <div class="pokemon-ability">
+      <p class="ability">${ability}</p>
+      <h4 class="subtitle">Secret Ability</h4>
+      <p class="secret-ability">${secretAbility ? secretAbility : 'None'}</p>
+    </div>
+    <h3 class="subtitle">Miscellanous information</h3>
+    <div class="extra-info">
+      <p class="pokemon-id">ID: ${id}</p>
+      <p class="egg-group">${
+        eggGroup2
+          ? `Egg Groups: ${eggGroup1}, ${eggGroup2}`
+          : eggGroup1
+          ? `Egg Group: ${eggGroup1}`
+          : 'Egg Group: None'
+      }</p>
+    </div>
+  </section>
+</div>`;
 }
 
 // Function to format strings
